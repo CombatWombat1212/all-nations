@@ -373,7 +373,6 @@ $inactive: (
 
 
 [id*="carousel-"] {
-  position: absolute;
   @each $key, $value in $inactive {
     #{$key}: #{$value};
   }
