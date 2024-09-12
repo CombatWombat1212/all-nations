@@ -1,0 +1,525 @@
+@import "breakpoints";
+@import "typography";
+@import "utilities";
+@import "tools/hover";
+@import "tools/browsers";
+@import "elements/footer-V2";
+
+@import "global/global";
+
+@function weighted-average($bool: var(--bool), $value1: var(--value1), $value2: var(--value2)) {
+  @return calc(#{$value1} * #{$bool} + #{$value2} * (1 - #{$bool}));
+}
+
+body {
+
+  overflow: visible !important; //idk if this will break something, so far so good
+  @include ios{
+    overflow: hidden !important; //idk if this will break something, so far so good
+  }
+}
+
+h3 {
+  font-weight: 300 !important;
+}
+
+.row-align-center {
+  .column_container,
+  .vc_container-block,
+  .container-block {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.column-align-bottom {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.column-align-center {
+  .wpb_wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+/*tablet menu
+
+@media only screen and (min-width: 768px) and (max-width: 1024px){
+#header-outer[data-has-menu][data-format] #top .row .span_3, body[data-header-format] #header-outer[data-format="centered-menu-under-logo"] #top .row .span_3 {
+
+width: 100%!important;
+
+}
+}
+
+
+@media only screen and (min-width: 768px) and (max-width: 1024px){
+body #header-outer.transparent #top .span_3 #logo[data-supplied-ml-starting="true"] img.mobile-only-logo.starting-logo {
+transform: translateX(0%)!important;
+left: 75vw!important;
+}
+}*/
+
+/*mobile menu*/
+#top .span_9 > .slide-out-widget-area-toggle a.using-label .label,
+#top ul .slide-out-widget-area-toggle a .label {
+  font-style: normal;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 15px;
+  line-height: 1 !important;
+  font-size: 22px;
+  font-family: "Larken";
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+// @media only screen and (max-width: 999px) {
+//   #header-outer[data-has-menu][data-format] #top .row {
+//     display: flex;
+//     justify-content: end;
+//   }
+// }
+
+// /*off canvas menu items*/
+// @media only screen and (min-width: 1000px) {
+//   #slide-out-widget-area.fullscreen-inline-images .off-canvas-social-links {
+//     position: fixed;
+//     top: 12vh;
+//     right: 5%;
+//   }
+// }
+
+// #slide-out-widget-area .off-canvas-social-links li i {
+//   background-color: transparent;
+//   font-size: 30px !important;
+//   line-height: 22px !important;
+//   width: 30px !important;
+//   margin-right: 30px !important;
+//   transform: translateX(20px) !important;
+//   padding: 5px !important;
+// }
+
+// .material #slide-out-widget-area:not(.slide-out-from-right) .off-canvas-social-links li a {
+//   padding: 0 0px !important;
+// }
+
+// #header-outer[data-full-width="true"] header > .container {
+//   padding: 0 5%;
+// }
+
+// @media only screen and (min-width: 1000px) {
+//   #header-outer:not([data-format="left-header"]) #top nav > ul > li {
+//     padding: 20px 30px 20px 30px;
+//     background-image: url("https://staging11.allnationscanna.ca/wp-content/uploads/graphics/menu-tag.svg");
+//     background-repeat: no-repeat;
+//     background-size: cover;
+//   }
+// }
+
+// /*menu label*/
+// #top ul .slide-out-widget-area-toggle a .label {
+//   font-style: normal;
+//   display: inline-block;
+//   vertical-align: middle;
+//   margin-right: 15px;
+//   line-height: 1 !important;
+//   font-family: "Larken" !important;
+//   font-size: 24px;
+//   font-weight: 700;
+//   text-transform: uppercase;
+// }
+
+// /*menu bg*/
+
+// @media only screen and (min-width: 690px) {
+//   #slide-out-widget-area .off-canvas-menu-container .menu,
+//   #slide-out-widget-area .off-canvas-menu-container .menu ul {
+//     display: block !important;
+//   }
+// }
+
+// body.material #header-outer #social-in-menu i {
+//   font-size: 30px;
+//   width: 30px;
+//   top: 0;
+// }
+
+// /*social icons*/
+
+// .span_12.light .nectar_icon_wrap[data-style="border-basic"] .nectar_icon {
+//   border-color: #fff;
+//   transition: all 0.45s cubic-bezier(0.25, 1, 0.33, 1);
+// }
+
+// .span_12.light .header-socialables .nectar_icon_wrap[data-style="border-basic"] .nectar_icon:hover {
+//   border-color: #9d0a0e;
+//   background-color: #9d0a0e;
+//   transition: all 0.45s cubic-bezier(0.25, 1, 0.33, 1);
+// }
+
+// .nectar_icon_wrap {
+//   transition: all 0.45s cubic-bezier(0.25, 1, 0.33, 1);
+// }
+
+// .nectar_icon_wrap:hover {
+//   transform: translateY(-5px);
+// }
+
+// /*cta hover*/
+// .nectar-cta[data-style="basic"] .link_wrap .link_text {
+//   transition: all 0.45s cubic-bezier(0.25, 1, 0.33, 1);
+// }
+
+// .nectar-cta[data-style="basic"] .link_wrap .link_text:hover {
+//   transform: translateY(-5px);
+// }
+
+@import "elements/nav";
+@import "elements/hero";
+@import "elements/about";
+
+body[data-form-submit="regular"] input[type="submit"] {
+  background-color: transparent !important;
+  border: 2px solid white;
+  border-radius: 25px !important;
+}
+
+button[type="submit"],
+input[type="button"],
+input[type="submit"] {
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  width: auto;
+  font-family: "Larken";
+  font-weight: 500;
+  font-size: 18;
+  text-transform: uppercase;
+}
+
+body[data-button-style*="_shadow"] .container-wrap .span_12.light input[type="submit"]:hover {
+  opacity: 1 !important;
+}
+
+body[data-form-submit="regular"] .container-wrap .span_12.light input[type="submit"]:hover {
+  background-color: white !important;
+  color: #9d0a0e !important;
+}
+
+/*contact form placeholder text*/
+::-webkit-input-placeholder {
+  /* WebKit browsers */
+  color: #fff !important;
+  font-family: "sofia-pro" !important;
+  font-size: 16px !important;
+  letter-spacing: 1.5px !important;
+  opacity: 1 !important;
+  padding-left: 5px !important;
+}
+:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #fff !important;
+  font-family: "sofia-pro" !important;
+  font-size: 20px !important;
+  letter-spacing: 1px !important;
+  opacity: 1 !important;
+  text-transform: uppercase !important;
+}
+::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #fff !important;
+  font-family: "sofia-pro" !important;
+  font-size: 20px !important;
+  letter-spacing: 1px !important;
+  opacity: 1 !important;
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  color: #fff !important;
+  font-family: "sofia-pro" !important;
+  font-size: 20px !important;
+  letter-spacing: 1px !important;
+  opacity: 1 !important;
+}
+
+input[type="email"] {
+  background-color: transparent !important;
+  border-color: rgba(255, 255, 255, 1) !important;
+  color: #fff !important;
+  border-radius: 25px !important;
+}
+
+.contact-send {
+  transform: translateY(-15px);
+}
+
+.no-marg-bot .wpb_wrapper > div {
+  margin-bottom: 0px;
+}
+
+.boxy h6 {
+  border: 2px solid #9c090d;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.nectar-sticky-media-section__media video {
+  width: 100%;
+  height: 130%;
+  transform: translateY(-15vh);
+}
+
+@media only screen and (min-width: 1000px) {
+  .nectar-sticky-media-section__media,
+  .nectar-sticky-media-section__media-wrap {
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 110% !important;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  .hide-desky {
+    display: none !important;
+  }
+  .hide-desky p {
+    display: none !important;
+  }
+  .hide-desky-boxey h6 {
+    display: none !important;
+  }
+  .hide-desky-skinney {
+    display: none !important;
+  }
+}
+
+@media only screen and (max-width: 999px) {
+  .hide-mobi {
+    display: none !important;
+  }
+  .hide-mobi p {
+    display: none !important;
+  }
+  .hide-mobi-boxey h6 {
+    display: none !important;
+  }
+  .hide-mobi-skinney {
+    display: none !important;
+  }
+}
+
+.upperage h2 {
+  text-transform: uppercase !important;
+}
+
+.just-bet {
+  justify-content: space-between !important;
+}
+
+/*just wanted to make this more specific with the `.inner-row` i don't actually know if that stipulation is actually narrowing it down to the right group, it works but it might not be the best one to use*/
+
+.just-bet.inner_row > [class*="row_col_wrap"] {
+  justify-content: space-between !important;
+}
+
+.btn-x-pad span {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.btn__hollow {
+  border-style: solid;
+  border-width: 0.0625rem;
+  border-color: #fff;
+}
+
+.beliefs-section {
+  // --belief-top-margin: 1.5rem;
+  --belief-top-margin: 0.5rem; //replaced with about
+  --belief-section-spacing: 1.25rem;
+
+  @include sm-down {
+    --belief-section-spacing: 1.5rem;
+  }
+  @include md-down {
+    --belief-top-margin: 0rem; //replaced with about
+  }
+  // margin-top: 9rem !important;
+
+  .toggle-title a {
+    @include h4;
+
+    @include sm-down {
+      @include h5;
+      text-transform: none !important;
+    }
+  }
+
+  .vc_toggles,
+  .toggles {
+    margin-top: var(--belief-top-margin) !important;
+  }
+
+  .vc_toggle + .vc_toggle,
+  .toggle + .toggle {
+    margin-top: var(--belief-section-spacing) !important;
+  }
+
+  .toggle {
+    padding: 0 !important;
+    border: none !important;
+  }
+
+  .toggle-heading {
+    color: var(--col-light) !important;
+    padding: 0 !important;
+  }
+
+  .toggles--minimal-shadow .toggle:before {
+    box-shadow: none !important;
+  }
+
+  .inner-toggle-wrap {
+    padding: 0 !important;
+    margin-top: 0.5rem !important;
+  }
+
+  .fa {
+    border-color: var(--col-light) !important;
+  }
+
+  .fa-plus-circle:before,
+  .fa-minus-circle:before,
+  .fa-plus-circle:after,
+  .fa-minus-circle:after {
+    background-color: var(--col-light) !important;
+  }
+
+  .wpb_text_column {
+    margin: 0 !important;
+  }
+}
+
+@import "elements/stack";
+@import "elements/partner-section";
+@import "elements/product-carousel";
+
+.tradition-message {
+  @include lg {
+    margin-top: 170px !important;
+  }
+}
+
+.newsletter-box {
+  //email signup form
+  [class*="contact-form"],
+  [class*="vc_contact-form"],
+  [aria-label="Contact form"] {
+    display: flex;
+    gap: 1rem;
+
+    @include sm-down {
+      flex-direction: column;
+    }
+
+    // email input wrapper
+    p:nth-child(2) {
+      width: 100% !important;
+      margin-bottom: 0rem !important;
+      padding-bottom: 0rem !important;
+
+      br {
+        display: none;
+      }
+    }
+
+    //email input
+    input[type="email"] {
+      size: unset !important;
+    }
+
+    //submit button wrapper
+    .contact-send {
+      transform: translateY(0px);
+    }
+
+    //submit button
+    .contact-send input {
+      width: 100%;
+    }
+
+    //button text
+    .contact-send h4 {
+      margin-bottom: 0rem;
+    }
+
+    //error message
+    [class*="response-output"] {
+      position: absolute;
+    }
+
+    [class*="spinner"]:not(.has-spinner) {
+      position: absolute;
+    }
+
+    [class*="not-valid-tip"] {
+      top: -40px;
+      position: absolute;
+    }
+  }
+}
+
+.divider-row {
+  [class*="column-inner"] {
+    max-width: calc(100vw - var(--scroll-bar-w)) !important;
+    overflow: hidden !important;
+  }
+}
+
+
+
+
+// fixing site overflow
+
+// .wpb_row.full-width-content:not(#flower) {
+//   // margin-left: -50vw;
+//   // margin-left: calc(-50vw + var(--scroll-bar-w) / 2);
+//   // left: 50%;
+//   // width: 100vw;
+//   // width: calc(100vw - var(--scroll-bar-w));
+
+//   overflow: hidden !important;
+// }
+
+// .wpb_row.full-width-content {
+//   margin-left: 0rem !important;
+//   left: 0 !important;
+//   width: 100vw;
+//   width: calc(100vw - var(--scroll-bar-w));
+// }
+
+// .container.main-content,
+// .nectar-global-section.before-footer .container.normal-container {
+//   margin-left: 0rem !important;
+//   margin-right: 0rem !important;
+// }
+
+
+// // .newsletter-box{
+// //   margin-left: 20%;
+// //   margin-right: 20%;
+
+// //   width: calc(100% - 40%);
+// // }

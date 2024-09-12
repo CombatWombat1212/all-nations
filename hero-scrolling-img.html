@@ -1,0 +1,34 @@
+<script>
+  function startPanningAnimation(panImageSelector, panRate) {
+    var panImage = document.querySelector(panImageSelector);
+    if (!panImage) {
+      console.warn("Panning image not found:", panImageSelector);
+      return; // Exit if the image wasn't found
+    }
+
+    panImage.style.backgroundRepeat = "repeat-x";
+
+    var panSpeed = panRate; // Rate of panning in pixels per second
+    var lastPanFrameTime = Date.now();
+
+    function panAnimate() {
+      var now = Date.now();
+      var deltaTime = now - lastPanFrameTime;
+      lastPanFrameTime = now;
+
+      // Calculate the new background position for panning
+      var shift = (panSpeed * deltaTime) / 1000; // Convert deltaTime to seconds and multiply by panning rate
+      var currentPos = parseFloat(panImage.style.backgroundPositionX || 0);
+      panImage.style.backgroundPositionX = currentPos + shift + "px";
+
+      requestAnimationFrame(panAnimate); // Request the next frame for panning
+    }
+
+    requestAnimationFrame(panAnimate); // Start the panning animation
+  }
+
+  // Start panning animation for specific images by providing the exact selector for each
+  startPanningAnimation(".nations-hero .nectar-parallax-scene *:nth-child(3) div", 15); // Use the exact ID or class
+
+  
+</script>

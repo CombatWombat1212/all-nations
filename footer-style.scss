@@ -1,0 +1,209 @@
+@mixin btn-inactive {
+  transform: translateY(0px);
+  transition: opacity 0.45s cubic-bezier(0.25, 1, 0.33, 1), transform 0.45s cubic-bezier(0.25, 1, 0.33, 1);
+
+  cursor: pointer;
+}
+
+@mixin btn-hovered {
+  opacity: 0.87;
+  -ms-transform: translateY(-3px) !important;
+  transform: translateY(-3px) !important;
+  -webkit-transform: translateY(-3px) !important;
+  color: #fff;
+}
+
+@mixin btn {
+  @include btn-inactive;
+
+  &:hover,
+  &:focus {
+    @include btn-hovered;
+  }
+}
+
+.footer {
+  &--information {
+  }
+
+  &--graphics {
+  }
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0 !important;
+
+  &--item {
+    color: #fff;
+    font-family: Sofia Pro !important;
+    text-transform: uppercase !important;
+    font-size: 18px !important;
+    line-height: 28px !important;
+    font-weight: 500 !important;
+
+    & + & {
+      margin-left: 1.75rem;
+    }
+
+    @include btn;
+  }
+}
+
+.footer-icons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  --icon-width: 2rem;
+
+  &--graphic {
+    width: var(--icon-width) !important;
+    height: var(--icon-width) !important;
+
+    & + & {
+      margin-left: 1.75rem;
+    }
+
+    img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: contain;
+    }
+
+    @include btn;
+  }
+}
+
+.footer {
+  --logo-width: 70%;
+
+  &--information {
+    //remove max height from the container with the product, about, and media links
+    .column-inner,
+    .vc_column-inner,
+    .element-container,
+    .vc_element-container {
+      min-height: 0 !important;
+    }
+
+    //logo outer div wrapper
+    .img-with-aniamtion-wrap .hover-wrap {
+      display: flex;
+      justify-content: center;
+    }
+
+    // logo outer div, center the logo, set size
+    .img-with-aniamtion-wrap .hover-wrap-inner {
+      width: var(--logo-width) !important;
+      height: auto !important;
+
+      img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: contain;
+      }
+    }
+  }
+
+  &--news-text * {
+    font-family: Emilio !important;
+    text-transform: none !important;
+    font-size: 32px !important;
+    line-height: 2.375rem !important;
+    font-weight: 200 !important;
+    color: #fff;
+  }
+
+  //email signup form
+  [class*="contact-form"],
+  [class*="vc_contact-form"],
+  [aria-label="Contact form"] {
+    display: flex;
+    gap: 1rem;
+
+    // email input wrapper
+    p:nth-child(2) {
+      width: 100% !important;
+      margin-bottom: 0rem !important;
+      padding-bottom: 0rem !important;
+
+      br {
+        display: none;
+      }
+    }
+
+    //email input
+    input[type="email"] {
+      size: unset !important;
+    }
+
+    //submit button wrapper
+    .contact-send {
+      transform: translateY(0px);
+    }
+
+    //submit button
+    .contact-send input {
+      width: 100%;
+    }
+
+    //button text
+    .contact-send h4 {
+      margin-bottom: 0rem;
+    }
+
+    //error message
+    [class*="response-output"] {
+      position: absolute;
+    }
+  }
+
+  &--graphics {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  //second row of images
+  &--graphics .vc_column-inner .wpb_wrapper .inner_row:nth-child(2) {
+    margin-bottom: 0 !important;
+  }
+}
+
+
+
+
+.footer-author {
+
+  //containing div with a weird min-height
+  @at-root &--row [class*="element-container"]{
+    min-height: 0!important;
+  }
+
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+
+  & * {
+    color: #fff !important;
+  }
+
+  &--text {
+    display: flex;
+    text-align: center;
+    gap: 0.55ch;
+    margin-bottom:0rem;
+  }
+
+  &--link {
+    text-decoration: underline;
+    @include btn;
+  }
+}

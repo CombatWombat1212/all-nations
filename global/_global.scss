@@ -1,0 +1,12 @@
+body .container-wrap .vc_row-fluid[data-column-margin="80px"] .wpb_column:not(.child_column) {
+  @include md-down {
+    padding-left: 0rem !important;
+    padding-right: 0rem !important;
+  }
+}
+
+// .container {
+//   @include md-down {
+//     max-width: unset !important;
+//   }
+// }

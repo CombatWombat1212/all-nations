@@ -1,0 +1,77 @@
+.nations-hero {
+  // image layer - people
+  .nectar-parallax-scene *:nth-child(4) div {
+    background-position-x: 50% !important;
+
+    @include lg-down {
+      background-position-x: 60% !important;
+    }
+
+    @include md-down {
+      background-image: url("http://staging11.allnationscanna.ca/wp-content/uploads/2023-refresh/hero-people-single-02.png") !important;
+      background-position-x: 18% !important;
+      background-position-y: 6rem !important;
+    }
+
+    @media screen and (max-width: 800px) {
+      background-position-x: 27% !important;
+      background-position-y: 3rem !important;
+      background-size: cover;
+      transform: scale(0.85);
+    }
+  }
+
+  //salient element row
+  &--row {
+    //unwrapped actual row
+    // [class*="row"][class*="inner"] {
+    //   @media screen and (max-width: 1500px) and (min-width: 1000px) {
+    //     display: flex;
+    //     flex-direction: column;
+    //   }
+    // }
+
+    h1 {
+      @media screen and (max-width: 1500px) and (min-width: 1000px) {
+        @include h2;
+      }
+    }
+  }
+}
+
+// .nations-hero {
+//   [class*="row_col"] {
+//     flex-direction: column;
+//   }
+
+//   & .vc_column_container,
+//   & .vc_container-block {
+//     margin-top: auto !important;
+//     margin-bottom: 4rem !important;
+//   }
+
+//   &--inner {
+//     display: flex;
+//     justify-content: space-between;
+//   }
+
+//   &--desc {
+//     display: flex;
+//   }
+
+//   &--body {
+//     margin-top: auto;
+//     // margin-top: 2rem;
+//   }
+
+//   // &--button {
+//   //   margin-top: 2rem;
+//   //   cursor: pointer;
+//   //   color: rgb(157, 10, 14);
+//   //   background-color: white;
+//   // }
+
+//   // &--button span {
+//   //   color: rgb(157, 10, 14);
+//   // }
+// }

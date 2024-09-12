@@ -1,0 +1,118 @@
+.about {
+  &--row {
+    --about-h3-top-margin: 0rem;
+    --about-h3-bottom-margin: 1.25rem;
+    --h3-first-child-top-margin: 1.35rem;
+    --about-description-bottom-margin: 1.5rem;
+
+    @include md-down {
+      --about-h3-top-margin: 1.35rem;
+      --about-description-bottom-margin: 0rem;
+    }
+  }
+
+
+  &--description {
+    // margin-top: var(--about-h3-top-margin) !important;
+    // margin-bottom: var(--about-description-bottom-margin) !important;
+    margin-top: 0rem !important;
+    margin-bottom: var(--about-description-bottom-margin) !important;
+  }
+
+  &--description h3:not(.toggle-title) {
+    margin-top: var(--about-h3-top-margin) !important;
+    margin-bottom: var(--about-h3-bottom-margin) !important;
+  }
+
+  //   &--description h3 + * {
+  //     margin-top: var(--)!important;
+  //   }
+
+  // last item in description
+  //   &--description div[class*="wrapper"] div[class*="wrapper"] *:last-child {
+  //     margin-bottom: 2rem !important;
+  //     @include md-down {
+  //       margin-bottom: 0rem !important;
+  //     }
+  //   }
+
+  &--flair {
+    @include lg-down {
+      width: 100% !important;
+    }
+    &__hidden {
+      @include md-down {
+        display:none!important;
+      }
+    }
+  }
+
+  &--main-img-col {
+    div[class*="img"][style*="margin"] {
+      @include md-down {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+      }
+    }
+
+
+
+    // get second img and put it on top
+    &__hidden-flair > [class*="column-inner"] > [class*="wrapper"] {
+      div:nth-child(1) {
+        @include md-down {
+            margin-top:0!important;
+        }
+      }
+    }
+
+
+
+    &__flair-top > [class*="column-inner"] > [class*="wrapper"] div:nth-child(2), 
+    &__flair-bottom > [class*="column-inner"] > [class*="wrapper"] div:nth-child(1), 
+    &__hidden-flair > [class*="column-inner"] > [class*="wrapper"] div:nth-child(2){
+    
+      .hover-wrap, .hover-wrap-inner{
+        width:100%!important;
+      }
+      img{
+        width:100%!important;
+      }
+
+    }
+
+
+
+
+    // // get second img and put it on top
+    // &__flair-bottom > [class*="column-inner"] > [class*="wrapper"] {
+    //   div:nth-child(1) {
+    //     @include lg-down {
+    //       order: 1 !important;
+    //     }
+    //   }
+    //   div:nth-child(2) {
+    //     @include lg-down {
+    //       order: 0 !important;
+    //     }
+    //   }
+    // }
+  }
+
+  &--photo {
+    height: 26rem !important;
+    object-fit: cover !important;
+
+    @include lg-down {
+      height: 22rem !important;
+    }
+  }
+  &--main-img {
+    @include md-down {
+      height: 20rem !important;
+      object-fit: cover !important;
+    }
+  }
+  &--img {
+  }
+}

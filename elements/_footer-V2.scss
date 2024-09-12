@@ -1,0 +1,255 @@
+@mixin btn-inactive {
+  transform: translateY(0px);
+  transition: opacity 0.45s cubic-bezier(0.25, 1, 0.33, 1), transform 0.45s cubic-bezier(0.25, 1, 0.33, 1);
+
+  cursor: pointer;
+}
+
+@mixin btn-hovered {
+  opacity: 0.87;
+  -ms-transform: translateY(-3px) !important;
+  transform: translateY(-3px) !important;
+  -webkit-transform: translateY(-3px) !important;
+  color: #fff;
+}
+
+@mixin btn {
+  @include btn-inactive;
+
+  &:hover,
+  &:focus {
+    @include btn-hovered;
+  }
+}
+
+.footer {
+  &--information {
+    [class*="wrapper"] {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      & > * {
+        margin-bottom: 1.5rem !important;
+      }
+    }
+  }
+
+  &--graphics {
+  }
+}
+
+.footer {
+  --logo-width: 70%;
+
+  --information-col-width: 5;
+  --map-col-width: 7;
+  --link-column-col-width: 4;
+
+  @include lg-down {
+    --logo-width: 95%;
+
+    --information-col-width: 4;
+    --map-col-width: 8;
+  }
+
+  @include md {
+    --link-column-col-width: 3.5;
+  }
+
+  @include md-down {
+    --logo-width: 100%;
+
+    --map-col-width: 12;
+    --information-col-width: 6;
+  }
+
+  @include sm-down {
+    --logo-width: 100%;
+    --information-col-width: 12;
+    --link-column-col-width: 12;
+  }
+
+  [class*="row_col"][class*="col"] {
+    @include md {
+      justify-content: center;
+    }
+    @include sm-down {
+      flex-direction: column;
+    }
+  }
+
+  &--title {
+    * {
+      font-size: var(--h5-font-size) !important;
+      font-family: Emilio !important;
+      font-weight: 600 !important;
+    }
+
+    margin-bottom: 0.25rem !important;
+  }
+
+  &--map {
+    @include lg-down {
+      width: calc(var(--map-col-width) / 12 * 100%) !important;
+      padding-left: 60px !important;
+      padding-right: 60px !important;
+    }
+
+    @include md {
+      margin-top: 3rem !important;
+    }
+    @include sm {
+      margin-top: 1rem !important;
+    }
+  }
+
+  &--information {
+    margin-top: 0 !important;
+
+    @include lg-down {
+      padding-left: 0rem !important;
+      padding-right: 0rem !important;
+
+      width: calc(var(--information-col-width) / 12 * 100%) !important;
+    }
+
+    @include md-down {
+      margin-left: auto !important;
+      margin-right: auto !important;
+    }
+
+    //logo outer div wrapper
+    .img-with-aniamtion-wrap .hover-wrap {
+      display: flex;
+      justify-content: center;
+    }
+
+    // logo outer div, center the logo, set size
+    .img-with-aniamtion-wrap .hover-wrap-inner {
+      width: var(--logo-width) !important;
+      height: auto !important;
+
+      @include sm-down {
+        max-width: 18rem !important;
+      }
+
+      img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: contain;
+      }
+    }
+  }
+
+  &--button {
+    padding: 0 !important;
+    margin: 0 !important;
+    background-color: #00000000 !important;
+
+    @include h6;
+  }
+
+  &--column {
+    @include md-down {
+      width: calc(var(--link-column-col-width) / 12 * 100%) !important;
+    }
+    @include sm-down {
+      &:first-child {
+        margin-top: 2rem !important;
+      }
+      margin-top: 4rem !important;
+    }
+
+    [class*="wrapper"] {
+      display: flex;
+      flex-direction: column;
+
+      a {
+        width: fit-content;
+
+        box-shadow: none !important;
+        &:hover,
+        &:focus {
+          box-shadow: none !important;
+        }
+
+        &::before {
+          position: absolute;
+          content: "";
+          width: 100%;
+          height: 100%;
+          $width: 0.35rem;
+          padding: $width;
+          top: -$width;
+          left: -$width;
+        }
+      }
+
+      a:not(:nth-child(1)):not(.footer-icons--graphic) {
+        margin-top: 1.45rem !important;
+      }
+    }
+  }
+}
+
+.footer-author {
+  //containing div with a weird min-height
+  @at-root &--row [class*="element-container"] {
+    min-height: 0 !important;
+  }
+
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+
+  & * {
+    color: #920d1a !important;
+  }
+
+  &--text {
+    display: flex;
+    text-align: center;
+    gap: 0.55ch;
+    margin-bottom: 0rem;
+  }
+
+  &--link {
+    text-decoration: underline;
+    @include btn;
+  }
+
+  &--row {
+    margin-top: -2px !important;
+  }
+}
+
+.footer-icons {
+  display: flex;
+  flex-direction: row;
+
+  --icon-width: 2rem;
+
+  &--graphic {
+    width: var(--icon-width) !important;
+    height: var(--icon-width) !important;
+    margin-top: 1.75rem !important;
+
+    & + & {
+      margin-left: 1.75rem;
+    }
+
+    img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: contain;
+    }
+
+    @include btn;
+  }
+}
+
+.nectar-global-section {
+  margin-top: -2px !important;
+}

@@ -1,0 +1,244 @@
+:root {
+  --body-font-size: Clamp(1rem, 1vw + 0.125rem, 1.125rem);
+  /* Adjusted for fluid scaling */
+  --h1-font-size: Clamp(3rem, 5vw + 1rem, 5.25rem);
+  /* Adjusted for fluid scaling */
+  --h2-font-size: Clamp(2.5rem, 4vw + 0.5rem, 4.0625rem);
+  /* Adjusted for fluid scaling */
+  --h3-font-size: Clamp(2rem, 3vw + 0.125rem, 3.125rem);
+  /* Adjusted for fluid scaling */
+  --h4-font-size: Clamp(1.5rem, 2vw + 0.375rem, 1.875rem);
+  /* Adjusted for fluid scaling */
+  --h5-font-size: Clamp(1.25rem, 1.5vw + 0.25rem, 1.5rem);
+  /* Adjusted for fluid scaling */
+  --h6-font-size: Clamp(1rem, 1vw + 0.125rem, 1.125rem);
+  /* Same as body for consistency */
+  --body-line-height: normal;
+  --h1-line-height: normal;
+  --h2-line-height: normal;
+  --h3-line-height: normal;
+  --h4-line-height: normal;
+  --h5-line-height: normal;
+  --h6-line-height: normal;
+}
+
+p,
+.text-body,
+.text-body * {
+  font-family: Sofia Pro !important;
+  font-size: var(--body-font-size) !important;
+  line-height: var(--body-line-height) !important;
+  font-weight: 300 !important;
+}
+
+h1,
+.text-h1,
+.text-h1 * {
+  font-family: Emilio !important;
+  text-transform: none !important;
+  font-size: var(--h1-font-size) !important;
+  line-height: var(--h1-line-height) !important;
+  font-weight: 200 !important;
+}
+
+h2,
+.text-h2,
+.text-h2 * {
+  font-family: Emilio !important;
+  text-transform: none !important;
+  font-size: var(--h2-font-size) !important;
+  line-height: var(--h2-line-height) !important;
+  font-weight: 200 !important;
+}
+
+h3,
+.text-h3,
+.text-h3 * {
+  font-family: Emilio !important;
+  text-transform: none !important;
+  font-size: var(--h3-font-size) !important;
+  line-height: var(--h3-line-height) !important;
+  font-weight: 200 !important;
+}
+
+h4,
+.text-h4,
+.text-h4 * {
+  font-family: Sofia Pro !important;
+  text-transform: none !important;
+  font-size: var(--h4-font-size) !important;
+  line-height: var(--h4-line-height) !important;
+  font-weight: 500 !important;
+}
+
+h5,
+.text-h5,
+.text-h5 * {
+  font-family: Sofia Pro !important;
+  text-transform: uppercase !important;
+  font-size: var(--h5-font-size) !important;
+  line-height: var(--h5-line-height) !important;
+  font-weight: 500 !important;
+}
+
+h6,
+.text-h6,
+.text-h6 * {
+  font-family: Sofia Pro !important;
+  text-transform: uppercase !important;
+  font-size: var(--h6-font-size) !important;
+  line-height: var(--h6-line-height) !important;
+  font-weight: 500 !important;
+}
+
+.footer--information [class*="wrapper"] {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.footer--information [class*="wrapper"] > * {
+  margin-bottom: 1.5rem !important;
+}
+
+.footer {
+  --logo-width: 70%;
+}
+
+.footer--title {
+  margin-bottom: 0.25rem !important;
+}
+
+.footer--title * {
+  font-size: var(--h5-font-size) !important;
+  font-family: Emilio !important;
+  font-weight: 600 !important;
+}
+
+.footer--information {
+  margin-top: 0 !important;
+}
+
+.footer--information .img-with-aniamtion-wrap .hover-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+.footer--information .img-with-aniamtion-wrap .hover-wrap-inner {
+  width: var(--logo-width) !important;
+  height: auto !important;
+}
+
+.footer--information .img-with-aniamtion-wrap .hover-wrap-inner img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain;
+}
+
+.footer--button {
+  padding: 0 !important;
+  margin: 0 !important;
+  background-color: #00000000 !important;
+  font-family: Sofia Pro !important;
+  text-transform: uppercase !important;
+  font-size: var(--h6-font-size) !important;
+  line-height: var(--h6-line-height) !important;
+  font-weight: 500 !important;
+}
+
+.footer--column [class*="wrapper"] {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer--column [class*="wrapper"] a {
+  width: fit-content;
+  box-shadow: none !important;
+}
+
+.footer--column [class*="wrapper"] a:hover, .footer--column [class*="wrapper"] a:focus {
+  box-shadow: none !important;
+}
+
+.footer--column [class*="wrapper"] a::before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  padding: 0.35rem;
+  top: -0.35rem;
+  left: -0.35rem;
+}
+
+.footer--column [class*="wrapper"] a:not(:nth-child(1)):not(.footer-icons--graphic) {
+  margin-top: 1.45rem !important;
+}
+
+.footer-author {
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.footer-author--row [class*="element-container"] {
+  min-height: 0 !important;
+}
+
+.footer-author * {
+  color: #920D1A !important;
+}
+
+.footer-author--text {
+  display: flex;
+  text-align: center;
+  gap: 0.55ch;
+  margin-bottom: 0rem;
+}
+
+.footer-author--link {
+  text-decoration: underline;
+  transform: translateY(0px);
+  transition: opacity 0.45s cubic-bezier(0.25, 1, 0.33, 1), transform 0.45s cubic-bezier(0.25, 1, 0.33, 1);
+  cursor: pointer;
+}
+
+.footer-author--link:hover, .footer-author--link:focus {
+  opacity: 0.87;
+  transform: translateY(-3px) !important;
+  -webkit-transform: translateY(-3px) !important;
+  color: #fff;
+}
+
+.footer-icons {
+  display: flex;
+  flex-direction: row;
+  --icon-width: 2rem;
+}
+
+.footer-icons--graphic {
+  width: var(--icon-width) !important;
+  height: var(--icon-width) !important;
+  margin-top: 1.75rem !important;
+  transform: translateY(0px);
+  transition: opacity 0.45s cubic-bezier(0.25, 1, 0.33, 1), transform 0.45s cubic-bezier(0.25, 1, 0.33, 1);
+  cursor: pointer;
+}
+
+.footer-icons--graphic + .footer-icons--graphic {
+  margin-left: 1.75rem;
+}
+
+.footer-icons--graphic img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain;
+}
+
+.footer-icons--graphic:hover, .footer-icons--graphic:focus {
+  opacity: 0.87;
+  transform: translateY(-3px) !important;
+  -webkit-transform: translateY(-3px) !important;
+  color: #fff;
+}
+/*# sourceMappingURL=footer-style-V2.css.map */

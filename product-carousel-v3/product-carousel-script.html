@@ -1,0 +1,338 @@
+<script>
+  const regions = ["canada", "israel", "europe", "australia"];
+  const carouselCount = regions.length;
+
+
+
+
+
+
+  async function carouselInit() {
+    for (let index = 0; index < carouselCount; index++) {
+      try {
+        const carousel = await carouselsGet(index);
+        if (!carousel) return;
+        carouselStartObserver(carousel);
+        carouselUpdate(carousel);
+        findStrainTitles(carousel);
+      } catch (error) {}
+    }
+  }
+
+  async function waitForElement(selector, retryInterval = 100, maxRetries = 50000) {
+    for (let retries = 0; retries <= maxRetries; retries++) {
+      const element = document.querySelector(selector);
+      if (element) return element;
+      await new Promise((resolve) => setTimeout(resolve, retryInterval));
+    }
+
+    throw new Error(`Element ${selector} not found after ${maxRetries} retries`);
+  }
+
+  async function carouselsGet(index) {
+    try {
+      const carouselElement = await waitForElement(`#carousel-${index}`);
+      carouselElement.setAttribute("data-page", 0);
+      const paginationElement = await waitForElement(`#carousel-${index} .flickity-page-dots`);
+      const images = Array.from(carouselElement.querySelectorAll(`.product-carousel--graphic-wrapper`));
+      const dots = await Promise.all(
+        Array.from(paginationElement.children).map(async (child) => ({
+          element: child,
+          active: false,
+        }))
+      );
+
+      const carousel = {
+        element: carouselElement,
+        pagination: {
+          element: paginationElement,
+          dots: dots,
+        },
+        images: images,
+        currentPage: 0,
+        index: index,
+      };
+      return carousel;
+    } catch (error) {
+      return null;
+    }
+  }
+
+  function carouselStartObserver(carousel) {
+    // console.log('Starting mutation observer for carousel');
+    const updateDotActiveStatus = (dotElement) => {
+      const dotObject = carousel.pagination.dots.find((dot) => dot.element === dotElement);
+      if (!dotObject) return;
+      const isActive = dotElement.classList.contains("is-selected");
+      if (dotObject.active !== isActive) {
+        dotObject.active = isActive;
+        // console.log(`Dot status changed. Dot index: ${carousel.pagination.dots.indexOf(dotObject)}, Active: ${isActive}`);
+        carouselPageChange(carousel);
+      }
+    };
+
+    const observerCallback = (mutationsList) => {
+      for (let mutation of mutationsList) {
+        if (mutation.type === "attributes" && mutation.attributeName === "class") {
+          // console.log('Mutation observed:', mutation);
+          updateDotActiveStatus(mutation.target);
+        }
+      }
+    };
+
+    const observerConfig = {
+      attributes: true,
+      attributeFilter: ["class"],
+    };
+
+    const observer = new MutationObserver(observerCallback);
+    carousel.pagination.dots.forEach((dot) => observer.observe(dot.element, observerConfig));
+    // console.log('Mutation observer started for each dot');
+  }
+
+  function carouselPageChange(carousel) {
+    const activeDotIndex = carousel.pagination.dots.findIndex((dot) => dot.active);
+    if (activeDotIndex === -1) return;
+
+    if (carousel.currentPage !== activeDotIndex) {
+      carousel.element.setAttribute("data-page", activeDotIndex);
+      carousel.currentPage = activeDotIndex;
+      carouselUpdate(carousel);
+    }
+  }
+
+  function carouselUpdate(carousel) {
+    // console.log(`Updating carousel for page ${carousel.currentPage}`);
+    const elems = Array.from(carousel.element.querySelectorAll(".product-carousel--graphic-wrapper"));
+    console.log(elems);
+    elems.forEach((elem, index) => {
+      if (index === carousel.currentPage) {
+        elem.classList.add("active");
+        elem.classList.remove("hidden");
+      } else {
+        elem.classList.remove("active");
+        elem.classList.add("hidden");
+      }
+    });
+  }
+
+  carouselInit();
+
+  const strains = processStrainsObj({
+    stolo_haze: {},
+
+    tropic_thunder: {
+      hide: {
+        israel: true,
+        europe: true,
+        australia: true,
+      },
+    },
+
+    cherry_gas: {
+      title: {
+        israel: "Mac Doughnut",
+        europe: "Mac Doughnut",
+      },
+      description: {
+        israel:
+          "Mac Doughnut is cross of Mac 1 and Powdered Donuts. This Indica leaning strain offers a unique aroma of ripe citrus fruit and diesel. Mac Doughnut has dense trichome covered buds, with a deep green hue accentuated with subtle touches of purple.",
+        europe:
+          "Mac Doughnut is cross of Mac 1 and Powdered Donuts. This Indica leaning strain offers a unique aroma of ripe citrus fruit and diesel. Mac Doughnut has dense trichome covered buds, with a deep green hue accentuated with subtle touches of purple.",
+      },
+      aromas: {
+        israel: "Sweet, Citrus, Diesel",
+        europe: "Sweet, Citrus, Diesel",
+      },
+      lineage: {
+        israel: "Mac 1 x Powdered Donuts",
+        europe: "Mac 1 x Powdered Donuts",
+      },
+    },
+
+    modified_grapes: {
+      hide: {
+        israel: true,
+        europe: true,
+        australia: true,
+      },
+    },
+
+    mac_daddy: {
+      hide: {
+        europe: true,
+      },
+    },
+
+    lemon_tartz: {},
+
+    peanut_butter_breath: {},
+
+    gush_mintz: {},
+  });
+
+  const varyingProperties = ["title", "description", "aromas", "lineage"];
+
+  function mergeStrains(foundStrains, strainsObj) {
+    Object.keys(foundStrains).forEach((foundKey) => {
+      const foundStrainName = foundStrains[foundKey].title;
+
+      if (!strainsObj[foundStrainName]) return;
+      if (!foundStrains[foundKey]?.elements?.title) return;
+
+      const title = foundStrains[foundKey].elements.title;
+      const parent = title.parentElement;
+      const description = parent.querySelector(".product-carousel--description");
+      const aromas = parent.querySelector(".product-carousel--profile-description");
+      const lineage = parent.querySelector(".product-carousel--lineage");
+
+      strainsObj[foundStrainName].elements = {
+        title,
+        description,
+        aromas,
+        lineage,
+      };
+
+      function updateProperty(propertyName, value) {
+        if (!strainsObj[foundStrainName][propertyName]) {
+          strainsObj[foundStrainName][propertyName] = { default: value.innerHTML };
+        } else {
+          strainsObj[foundStrainName][propertyName].default = value.innerHTML;
+        }
+      }
+
+      updateProperty("title", title);
+      updateProperty("description", description);
+      updateProperty("aromas", aromas);
+      updateProperty("lineage", lineage);
+    });
+
+    // console.log(strainsObj);
+    return strainsObj;
+  }
+
+  function processStrainsObj(STRAIN_DATA) {
+    Object.keys(STRAIN_DATA).forEach((strainKey) => {
+      const strain = STRAIN_DATA[strainKey];
+
+      if (!strain.hide) {
+        strain.hide = {};
+      }
+
+      regions.forEach((region) => {
+        if (strain.hide[region] === undefined) {
+          strain.hide[region] = false;
+        }
+      });
+    });
+
+    return STRAIN_DATA;
+  }
+
+  async function findStrainTitles(carousel) {
+    const firstTitle = await waitForElement(`#carousel-${carousel.index} .product-carousel--strain`);
+    const titles = Array.from(carousel.element.querySelectorAll(`.product-carousel--strain`));
+    const foundStrains = {};
+
+    titles.forEach((element, index) => {
+      let title = element.innerHTML.toLowerCase();
+      title = title.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      title = title.replace(/[^a-z0-9 ]/g, "");
+      title = title.replace(/ /g, "_");
+
+      foundStrains[`strain_${index}`] = {
+        elements: {
+          title: element,
+        },
+        title: title,
+      };
+    });
+
+    const mergedStrains = mergeStrains(foundStrains, strains);
+
+    document.body.classList.add("default");
+    getCountryRegionKey().then((regionKey) => {
+
+      console.log(regionKey);
+
+      if (!regionKey) return;
+      // add class to body for region
+      document.body.classList.remove("default");
+      document.body.classList.add(regionKey);
+      
+      Object.keys(mergedStrains).forEach((key) => {
+        const strain = mergedStrains[key];
+        // if (!strain.variants) return;
+        if (!strain.elements) return;
+
+        function updateStrainProperty() {
+          varyingProperties.forEach((property) => {
+            if (!strain[property]) return;
+            if (!strain.elements[property]) return;
+            if (!strain[property].default) return;
+            if (!strain[property][regionKey]) return;
+
+            strain.elements[property].innerHTML = strain[property][regionKey];
+          });
+        }
+
+        updateStrainProperty();
+
+        // if (!strain.elements.title) return;
+        // strain.elements.title.innerHTML = strain.name[regionKey] || strain.name.default;
+      });
+    });
+  }
+
+  async function getCountryRegionKey() {
+    try {
+      const response = await fetch("https://ipapi.co/json/");
+      const data = await response.json();
+      const countryCode = data.country;
+
+      if (data.country_name === "Australia") {
+        return "australia";
+      } else if (data.country_name === "Canada") {
+        return "canada";
+      } else if (data.country_name === "Israel") {
+        return "israel"; // Corrected typo
+      } else if (
+        [
+          "AT",
+          "BE",
+          "BG",
+          "CY",
+          "CZ",
+          "DE",
+          "DK",
+          "EE",
+          "ES",
+          "FI",
+          "FR",
+          "GR",
+          "HR",
+          "HU",
+          "IE",
+          "IT",
+          "LT",
+          "LU",
+          "LV",
+          "MT",
+          "NL",
+          "PL",
+          "PT",
+          "RO",
+          "SE",
+          "SI",
+          "SK",
+        ].includes(countryCode)
+      ) {
+        return "europe";
+      } else {
+        return "default";
+      }
+    } catch (error) {
+      return "default"; 
+    }
+  }
+</script>

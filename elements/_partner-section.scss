@@ -1,0 +1,97 @@
+// .partner-img {
+//     --partner-overlap-height: 46rem;
+//     --partner-overlap-width: 100%;
+
+//     height: var(--partner-overlap-height);
+//     width: var(--partner-overlap-width);
+
+//     &--background {
+//       height: var(--partner-overlap-height);
+//       width: var(--partner-overlap-width);
+//       border-radius: 20px;
+//       overflow: hidden;
+
+//       img {
+//         width: 100% !important;
+//         height: 100% !important;
+//         object-fit: cover;
+//       }
+//     }
+
+//     &--foreground {
+//       position: absolute;
+//       bottom: -7%;
+//       left: -3.25%;
+
+//       width: 6rem;
+
+//       img {
+//         width: 100% !important;
+//       }
+//     }
+
+//     &--graphic {
+//     }
+//   }
+
+// @mixin background-img-selector{
+//   @content;
+// }
+// @mixin flair-img-selector{
+//   @content;
+// }
+
+
+
+.partner-section {
+  // fixing mobile padding
+  .column_container.no-extra-padding {
+    @include md-down {
+      padding-left: 0rem !important;
+      padding-right: 0rem !important;
+    }
+  }
+
+  .vc_row-fluid[data-column-margin="80px"] > .span_12 {
+    @include md-down {
+      margin-left: 0rem !important;
+      margin-right: 0rem !important;
+    }
+  }
+}
+
+.partner-img {
+  &--wrapper {
+  }
+
+  .cascading-image:nth-child(1) {
+    padding: 0 !important;
+    overflow: hidden;
+    border-radius: 20px !important;
+    img {
+      border-radius: 20px !important;
+    }
+  }
+  .cascading-image:nth-child(2) {
+    --translate-y: Clamp(-12.5rem, -19.5652rem + 11.3043vi, -6rem);
+    --translate-x: Clamp(-41rem, 20.9565rem + -51.6304vi, -11.3125rem);
+    --scale: 1;
+
+    @include md-down {
+      --translate-y: Clamp(-12.8125rem, -26.0282rem + 30.6452vi, -6.875rem);
+      --translate-x: Clamp(-43.5rem, 15.9758rem + -95.1613vi, -25.0625rem);
+    }
+
+    @include sm-down {
+      --scale: 0.5;
+      // --translate-y: Clamp(-12.4375rem, -18.4375rem + 26.6667vi, -6.9375rem);
+      // --translate-x: Clamp(-30.75rem, 12.375rem + -100vi, -10.125rem);
+
+      --translate-y: Clamp(-12.875rem, -19.2159rem + 28.1818vi, -7.0625rem);
+      --translate-x: Clamp(-30.6875rem, 11.6534rem + -98.1818vi, -10.4375rem);
+    }
+
+    transform: translateY(var(--translate-y)) translateX(var(--translate-x)) scale(var(--scale));
+    // left:-35%;
+  }
+}

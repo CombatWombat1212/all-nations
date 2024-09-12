@@ -1,0 +1,89 @@
+@mixin mobile-menu-lines-selector {
+  @at-root body
+      #header-outer[data-permanent-transparent="1"].transparent.dark-slide
+      > #top
+      .span_9
+      > .slide-out-widget-area-toggle.mobile-icon
+      .lines-button {
+    @content;
+  }
+}
+
+header#top {
+  --link-color: var(--col-white);
+
+  padding-top: 1rem;
+
+  @include md-down {
+    &::before {
+      // background-color: var(--col-accent);
+      // content: "";
+      // top: -44px;
+      // position: absolute;
+      // height: 10rem;
+      // width: 100%;
+    }
+  }
+
+  .container {
+    padding: 0 5rem !important;
+    @include md-down {
+      padding: 0 2.5rem!important
+    }
+  }
+
+  //menu text a tag wrapper
+  li[id*="menu-item"] a {
+    margin: 0 1.25rem !important;
+  }
+
+  //menu item text
+  .menu-title-text {
+    color: var(--link-color) !important;
+    @include h6;
+  }
+
+  .mobile-icon div {
+    transform: scale(1.5) translateY(-25%) !important;
+  }
+
+  // .menu-title-text:after (the underline)
+  @at-root #header-outer[data-lhe="animated_underline"].transparent.dark-slide #top nav > ul > li > a .menu-title-text:after {
+    border-color: var(--link-color) !important;
+  }
+
+  //menu button item
+  //   @at-root #header-outer li[id*="menu-item"][class*="button"]{
+  @at-root #header-outer.dark-slide.transparent:not(.side-widget-open) #top nav > ul > li[class*="button_bordered"] {
+    & > a::before {
+      border-color: #fff !important;
+      height: 3.25rem;
+    }
+  }
+
+  // mobile menu button text
+  @at-root #top .span_9 > .slide-out-widget-area-toggle i,
+    #header-outer.transparent.dark-slide .slide-out-widget-area-toggle a i.label,
+    #header-outer.transparent.dark-slide #top .span_9 > .slide-out-widget-area-toggle a.using-label .label {
+    color: var(--link-color) !important;
+  }
+
+  // mobile menu button lines
+  @include mobile-menu-lines-selector {
+    &:after,
+    & .lines:before,
+    & .lines:after {
+      background-color: var(--link-color) !important;
+    }
+  }
+}
+
+//inside mobile nav-dropdown
+.off-canvas-menu-container.mobile-only {
+  // menu item list
+  .menu.menuopen {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+}

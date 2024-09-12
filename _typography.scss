@@ -1,0 +1,246 @@
+// https://utopia.fyi/clamp/calculator/?a=690,1300,69%E2%80%9496%7C56%E2%80%9476%7C46%E2%80%9463%7C32%E2%80%9442%7C24%E2%80%9434%7C24%E2%80%9430%7C24%E2%80%9430
+
+// $grid-breakpoints: (
+// 	xs: 0px,
+// 	sm: 690px,
+// 	md: 1000px,
+// 	lg: 1301px
+// 	);
+
+// @mixin type-base {
+// biggest
+// --h1-font-size: 84px;
+// --h2-font-size: 65px;
+// --h3-font-size: 50px;
+// --h4-font-size: 30px;
+// --h5-font-size: 24px;
+// --h6-font-size: 18px;
+// --body-font-size: 18px;
+
+// smallest
+// --h1-font-size: 60px;
+// --h2-font-size: 45px;
+// --h3-font-size: 35px;
+// --h4-font-size: 22px;
+// --h5-font-size: 18px;
+// --h6-font-size: 16px;
+// --body-font-size: 16px;
+
+// }
+
+// original
+// @mixin type-base {
+//   --body-font-size: 1.125rem;
+//   --h1-font-size: 5.25rem;
+//   --h2-font-size: 4.0625rem;
+//   --h3-font-size: 3.125rem;
+//   --h4-font-size: 1.875rem;
+//   --h5-font-size: 1.5rem;
+//   --h6-font-size: 1.125rem;
+
+//   --body-line-height: 1.9375rem;
+//   --h1-line-height: 5.75rem;
+//   --h2-line-height: 4.375rem;
+//   --h3-line-height: 3.875rem;
+//   --h4-line-height: 2.5rem;
+//   --h5-line-height: 2.125rem;
+//   --h6-line-height: 1.75rem;
+// }
+
+@mixin fluid-type-starting-1700 {
+  // https://utopia.fyi/clamp/calculator/?a=690,1300,60%E2%80%9484|45%E2%80%9465|35%E2%80%9450|22%E2%80%9430|18%E2%80%9424|16%E2%80%9418|16%E2%80%9418
+  // https://utopia.fyi/clamp/calculator/?a=690,1300,69%E2%80%9496|56%E2%80%9476|46%E2%80%9463|32%E2%80%9442|24%E2%80%9434|24%E2%80%9430|24%E2%80%9430
+
+  --h1-font-size: Clamp(3.75rem, 2.7252rem + 2.3762vi, 5.25rem);
+  --h2-font-size: Clamp(2.8125rem, 1.9585rem + 1.9802vi, 4.0625rem);
+  --h3-font-size: Clamp(2.1875rem, 1.547rem + 1.4851vi, 3.125rem);
+  --h4-font-size: Clamp(1.375rem, 1.0334rem + 0.7921vi, 1.875rem);
+  --h5-font-size: Clamp(1.125rem, 0.8688rem + 0.5941vi, 1.5rem);
+  --h6-font-size: Clamp(1rem, 0.9146rem + 0.198vi, 1.125rem);
+  --body-font-size: Clamp(1rem, 0.9146rem + 0.198vi, 1.125rem);
+
+  --h1-line-height: Clamp(4.3125rem, 3.1597rem + 2.6733vi, 6rem);
+  --h2-line-height: Clamp(3.5rem, 2.646rem + 1.9802vi, 4.75rem);
+  --h3-line-height: Clamp(2.875rem, 2.1491rem + 1.6832vi, 3.9375rem);
+  --h4-line-height: Clamp(2rem, 1.573rem + 0.9901vi, 2.625rem);
+  --h5-line-height: Clamp(1.5rem, 1.073rem + 0.9901vi, 2.125rem);
+  --h6-line-height: Clamp(1.5rem, 1.2438rem + 0.5941vi, 1.875rem);
+  --body-line-height: Clamp(1.5rem, 1.2438rem + 0.5941vi, 1.875rem);
+}
+
+@mixin fluid-type {
+  // https://utopia.fyi/clamp/calculator/?a=690,1300,60%E2%80%9484|50%E2%80%9465|40%E2%80%9450|22%E2%80%9430|18%E2%80%9424|16%E2%80%9418|16%E2%80%9418
+
+  @supports (font-size: Clamp(3.75rem, calc(2.0533rem + 3.9344vi), 5.25rem)) {
+    --h1-font-size: Clamp(3.75rem, 2.0533rem + 3.9344vi, 5.25rem);
+    --h2-font-size: Clamp(3.125rem, 2.0645rem + 2.459vi, 4.0625rem);
+    --h3-font-size: Clamp(2.5rem, 1.793rem + 1.6393vi, 3.125rem);
+    --h4-font-size: Clamp(1.375rem, 0.8094rem + 1.3115vi, 1.875rem);
+    --h5-font-size: Clamp(1.125rem, 0.7008rem + 0.9836vi, 1.5rem);
+    --h6-font-size: Clamp(1rem, 0.8586rem + 0.3279vi, 1.125rem);
+    --body-font-size: Clamp(1rem, 0.8586rem + 0.3279vi, 1.125rem);
+  }
+
+  // doesnt
+  @supports not (font-size: Clamp(3.75rem, calc(2.0533rem + 3.9344vi), 5.25rem)) {
+    --h1-font-size: 5.25rem;
+    --h2-font-size: 4.0625rem;
+    --h3-font-size: 3.125rem;
+    --h4-font-size: 1.875rem;
+    --h5-font-size: 1.5rem;
+    --h6-font-size: 1.125rem;
+    --body-font-size: 1.125rem;
+
+    @include lg-down {
+      --h1-font-size: calc(2.0533rem + 3.9344vi);
+      --h2-font-size: calc(2.0645rem + 2.459vi);
+      --h3-font-size: calc(1.793rem + 1.6393vi);
+      --h4-font-size: calc(0.8094rem + 1.3115vi);
+      --h5-font-size: calc(0.7008rem + 0.9836vi);
+      --h6-font-size: calc(0.8586rem + 0.3279vi);
+      --body-font-size: calc(0.8586rem + 0.3279vi);
+    }
+
+    @include sm-down {
+      --h1-font-size: 3.75rem;
+      --h2-font-size: 3.125rem;
+      --h3-font-size: 2.5rem;
+      --h4-font-size: 1.375rem;
+      --h5-font-size: 1.125rem;
+      --h6-font-size: 1rem;
+      --body-font-size: 1rem;
+    }
+  }
+
+  @supports (line-height: Clamp(3.75rem, calc(2.0533rem + 3.9344vi), 5.25rem)) {
+    --h1-line-height: Clamp(4.3125rem, 2.4037rem + 4.4262vi, 6rem);
+    --h2-line-height: Clamp(3.5rem, 2.0861rem + 3.2787vi, 4.75rem);
+    --h3-line-height: Clamp(3.25rem, 2.4723rem + 1.8033vi, 3.9375rem);
+    --h4-line-height: Clamp(2rem, 1.293rem + 1.6393vi, 2.625rem);
+    --h5-line-height: Clamp(1.5rem, 0.793rem + 1.6393vi, 2.125rem);
+    --h6-line-height: Clamp(1.5rem, 1.0758rem + 0.9836vi, 1.875rem);
+    --body-line-height: Clamp(1.5rem, 1.0758rem + 0.9836vi, 1.875rem);
+  }
+
+  // doesnt
+  @supports not (line-height: Clamp(3.75rem, calc(2.0533rem + 3.9344vi), 5.25rem)) {
+    --h1-line-height: 6rem;
+    --h2-line-height: 4.75rem;
+    --h3-line-height: 3.9375rem;
+    --h4-line-height: 2.625rem;
+    --h5-line-height: 2.125rem;
+    --h6-line-height: 1.875rem;
+    --body-line-height: 1.875rem;
+
+    @include lg-down {
+      --h1-line-height: calc(2.4037rem + 4.4262vi);
+      --h2-line-height: calc(2.0861rem + 3.2787vi);
+      --h3-line-height: calc(2.4723rem + 1.8033vi);
+      --h4-line-height: calc(1.293rem + 1.6393vi);
+      --h5-line-height: calc(0.793rem + 1.6393vi);
+      --h6-line-height: calc(1.0758rem + 0.9836vi);
+      --body-line-height: calc(1.0758rem + 0.9836vi);
+    }
+
+    @include sm-down {
+      --h1-line-height: 4.3125rem;
+      --h2-line-height: 3.5rem;
+      --h3-line-height: 3.25rem;
+      --h4-line-height: 2rem;
+      --h5-line-height: 1.5rem;
+      --h6-line-height: 1.5rem;
+      --body-line-height: 1.5rem;
+    }
+  }
+}
+
+:root {
+  @include fluid-type;
+}
+
+@mixin body {
+  font-family: Sofia Pro !important;
+  font-size: var(--body-font-size) !important;
+  line-height: var(--body-line-height) !important;
+  font-weight: 300 !important;
+}
+
+@mixin h1 {
+  font-family: Emilio !important;
+  text-transform: none !important;
+  font-size: var(--h1-font-size) !important;
+  line-height: var(--h1-line-height) !important;
+  font-weight: 200 !important;
+}
+
+@mixin h2 {
+  font-family: Emilio !important;
+  text-transform: none !important;
+  font-size: var(--h2-font-size) !important;
+  line-height: var(--h2-line-height) !important;
+  font-weight: 200 !important;
+}
+@mixin h3 {
+  font-family: Emilio !important;
+  text-transform: none !important;
+  font-size: var(--h3-font-size) !important;
+  line-height: var(--h3-line-height) !important;
+  font-weight: 200 !important;
+}
+@mixin h4 {
+  font-family: Sofia Pro !important;
+  text-transform: none !important;
+  font-size: var(--h4-font-size) !important;
+  line-height: var(--h4-line-height) !important;
+  font-weight: 500 !important;
+}
+@mixin h5 {
+  font-family: Sofia Pro !important;
+  text-transform: uppercase !important;
+  font-size: var(--h5-font-size) !important;
+  line-height: var(--h5-line-height) !important;
+  font-weight: 500 !important;
+}
+@mixin h6 {
+  font-family: Sofia Pro !important;
+  text-transform: uppercase !important;
+  font-size: var(--h6-font-size) !important;
+  line-height: var(--h6-line-height) !important;
+  font-weight: 500 !important;
+}
+
+p,
+.text-body,
+.text-body * {
+  @include body;
+}
+h1,
+.text-h1,
+.text-h1 * {
+  @include h1;
+}
+h2,
+.text-h2,
+.text-h2 * {
+  @include h2;
+}
+h3,
+.text-h3,
+.text-h3 * {
+  @include h3;
+}
+h4,
+.text-h4,
+.text-h4 * {
+  @include h4;
+}
+h5,
+.text-h5,
+.text-h5 * {
+  @include h5;
+}
+h6,
+.text-h6,
+.text-h6 * {
+  @include h6;
+}
