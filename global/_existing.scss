@@ -1,0 +1,151 @@
+/* Utility */
+
+/*iframe popup*/
+iframe, iframe.iframe-embed {
+    max-width: 100%;
+    min-height: 80vh;
+}
+
+
+
+.age-gate-remember, .age-gate__remember {
+    display: none !important;
+}
+
+
+
+.age-gate__challenge{
+    font-family: 'Larken' !important;
+    font-size: 4.5vw !important;
+    line-height: 1 !important;
+    text-transform: uppercase !important;
+    padding-bottom: 1vh !important;
+}
+
+
+	
+.age-gate__submit.age-gate__submit--no
+{
+    display: none!important;
+}
+
+
+.age-gate__heading-title--logo {
+    max-width: var(--ag-logo-max-width,20vw);
+    padding-bottom: 0% !important;
+}
+
+
+.age-gate {
+    background-color: var(--ag-form-background,#fff);
+    border: var(--ag-form-border,0);
+    border-radius: var(--ag-form-radius,0);
+    border-width: var(--ag-form-border-width,0);
+    box-shadow: var(--ag-form-shadow,none);
+    color: var(--ag-text-color,#333);
+    margin: var(--ag-form-margin,auto);
+    max-height: var(--ag-form-max-height,calc(94vh - var(--vh-offset, 0px)));
+    max-width: var(--ag-form-max-width,900px);
+    overflow-y: auto;
+    padding: var(--ag-form-padding,20px);
+    position: relative;
+    scrollbar-width: var(--ag-scrollbar-display,none);
+    width: 100vw;
+    z-index: var(--ag-form-z-index,100);
+}
+
+@media screen and (min-width: 1440px) {
+  /* styles for very large screens */
+  .age-gate {
+
+    width: 120%;
+    max-width: var(--ag-form-max-width,1200px);
+
+}
+}
+
+
+.age-gate__submit.age-gate__submit--yes
+{
+    background-image: url(https://allnationscanna.ca/wp-content/uploads/graphics/age-agte-bg-2.svg);
+    background-repeat: no-repeat !important;
+    background-size: contain!important;
+    background-position: center !important;
+    color: #9c090c !important;
+    font-family: 'Larken' !important;
+    font-size: 2.5vw !important;
+    text-transform: uppercase !important;
+    padding: 25px 150px !important;
+    background-color: transparent !important;
+}
+
+.age-gate__wrapper button[type=submit]{
+    transition: all .45s cubic-bezier(.25,1,.33,1);
+}
+
+
+.age-gate__wrapper button[type=submit]:hover{
+    opacity: 1 !important;
+    transform: translateY(-5px);
+}
+
+.age-gate__wrapper button[type=submit]:hover{
+    background-color: transparent !important;
+}
+
+
+
+.age-gate-additional-information, .age-gate__additional-information {
+    font-size: var(--ag-text-additional-size,18px);
+    margin: var(--ag-text-additional-margin,0);
+    padding-left: 8%;
+    padding-right:8%;
+}
+
+
+@media only screen and (max-width: 1000px){
+.age-gate-additional-information, .age-gate__additional-information {
+    font-size: var(--ag-text-additional-size,12px);
+}
+
+.age-gate__challenge{
+    font-family: 'Larken' !important;
+    font-size: 6.5vw !important;
+    line-height: 1 !important;
+    text-transform: uppercase !important;
+    padding-bottom: 1vh !important;
+}
+
+
+.age-gate__submit.age-gate__submit--yes
+{
+    color: #9c090c !important;
+    font-family: 'Larken' !important;
+    font-size: 4.5vw !important;
+    text-transform: uppercase !important;
+    padding: 30px 60px !important;
+
+}
+
+.age-gate__heading-title--logo {
+    max-width: var(--ag-logo-max-width,40vw);
+    padding-bottom: 0% !important;
+}
+}
+
+
+
+
+/*hide captcha badge*/
+
+.grecaptcha-badge { visibility: hidden; }
+
+
+
+
+#header-outer #social-in-menu i, .material #slide-out-widget-area.slide-out-from-right .off-canvas-social-links a i {
+    font-size: 22px !important;
+    line-height: 26px !important;
+    height: 26px !important;
+    color: white;
+}

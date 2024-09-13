@@ -30,7 +30,6 @@
 	@return $selectors;
   }
   
-  @use "sass:math";
   @mixin hover($parent: (''), $child: (''), $transition: var(--transition)) {
 	$splitParent: str-split($parent, ',');
 	@each $p in $splitParent {

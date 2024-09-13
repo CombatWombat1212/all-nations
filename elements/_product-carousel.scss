@@ -373,6 +373,7 @@ $inactive: (
 
 
 [id*="carousel-"] {
+  position: absolute;
   @each $key, $value in $inactive {
     #{$key}: #{$value};
   }
@@ -383,6 +384,7 @@ $inactive: (
   body.#{$region} {
     #carousel-#{$index} {
       @each $key, $value in $active {
+        position: relative;
         #{$key}: #{$value};
       }
     }

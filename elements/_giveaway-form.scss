@@ -1,0 +1,95 @@
+@mixin giveaway-form {
+  $form--background: #072e35;
+  $form--input-background: #c2d5d9;
+
+  .form {
+    &--row {
+      @include flex-row;
+
+      --gap: 2rem;
+      @include gap;
+
+      & + .form--row {
+        margin-top: calc(var(--gap) * 0.85);
+      }
+      & + .form--row__submit {
+        margin-top: calc(var(--gap) * 1.15);
+      }
+
+      @include md-down {
+        @include flex-col;
+        // --gap: 0rem;
+      }
+    }
+
+    &--field-group {
+      flex: 1;
+
+      & > * {
+        @include flex-col;
+      }
+    }
+
+    &--label {
+      margin-bottom: 0.2rem;
+      display: block;
+
+      & + br {
+        display: none !important;
+      }
+    }
+
+    &--input {
+      @include body;
+      background-color: $form--input-background !important;
+      border-radius: 0.5rem !important;
+
+      border: 3px solid $form--input-background !important;
+
+      color: rgba($form--background, 1) !important;
+
+      &::placeholder {
+        color: rgba($form--background, 0.75) !important;
+        padding: 0rem !important;
+        letter-spacing: normal !important;
+      }
+
+      &:active,
+      &:focus {
+        background-color: mix($form--background, $form--input-background, 15%) !important;
+        border-color: darken($form--input-background, 10%) !important;
+      }
+    }
+
+    &--button {
+      border-radius: 0.5rem !important;
+      background-color: #9d0a0e !important;
+      border: none;
+      @include h6;
+      font-family: Emilio !important;
+      font-weight: 600 !important;
+      margin-left: auto !important;
+    }
+
+    [class*="not-valid"][class*="tip"],
+    & ~ [class*="response"][class*="output"] {
+      @include body;
+      font-size: calc(var(--body-font-size) * 0.875) !important;
+      border-radius: 0.5rem !important;
+
+      @include pad-x(calc(10px + 3px));
+      @include pad-y(4px);
+    }
+
+    [class*="not-valid"][class*="tip"] {
+      margin-top: 0.5rem;
+      background-color: mix(#9d0a0e, white, 12.5%) !important;
+      color: var(--nectar-accent-color);
+    }
+
+    & ~ [class*="response"][class*="output"] {
+      background-color: mix(#ffb900, white, 12.5%) !important;
+      color: darken(#ffb900, 35%);
+    }
+  }
+}

@@ -1,0 +1,141 @@
+#giveaway {
+  &--hero {
+    @include row-inner {
+      padding: 0rem !important;
+    }
+    @include inner-row-inner {
+      @include pseudo-reset;
+      padding-top: 180px;
+      @include flex-row-center;
+      align-items: center;
+
+      --gap: 6rem;
+      @include gap;
+
+      @include md-down {
+        @include flex-col;
+        @include mx-auto;
+        padding-top: 130px;
+        max-width: calc(100% - 3rem);
+        --gap: 3rem;
+      }
+    }
+
+    .hero {
+      &--row {
+        padding: 0rem !important;
+      }
+      &--heading {
+        &,
+        * {
+          @include h1;
+        }
+        margin-bottom: 2rem !important;
+        min-width: 12ch;
+        @include md-down {
+          min-width: unset;
+          max-width: 13ch;
+          width: unset;
+        }
+      }
+      &--paragraph {
+        &,
+        * {
+          @include h5;
+          text-transform: unset !important;
+        }
+
+        width: 42ch;
+        @include md-down {
+          max-width: 42ch;
+          width: unset;
+        }
+      }
+
+      &--inner-column {
+        @include md-down {
+          @include flex-row-center;
+        }
+
+        @at-root #giveaway--hero {
+          @include inner-col-inner {
+            @include md-down {
+              width: fit-content;
+              @include mx-auto;
+            }
+          }
+        }
+
+        &__body {
+          // width: col-gap(8, 2);
+          // width: col-width(8);
+          @include flex-col-center;
+          flex: 0;
+        }
+        &__graphic {
+          flex: 1;
+          max-width: col-width(5);
+
+          @include md-down {
+            @include mx-auto;
+            max-width: unset;
+          }
+
+          .hover-wrap-inner {
+            overflow: hidden;
+            border-radius: 1rem;
+            img {
+              transform: scale(1.05);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &--enter {
+    @include giveaway-form;
+
+    @include pad-y-important(4rem);
+
+    @include text {
+      color: #fff;
+    }
+
+    @include sm-down {
+      @include flex-row-center;
+    }
+
+    @include row-inner {
+      --gap: 3rem;
+
+      @include marg-x-important(calc(var(--gap) * -1));
+      & > * {
+        @include pad-x-important(var(--gap));
+      }
+
+      @include sm-down {
+        --gap: 0rem;
+        max-width: calc(100% - 2.35rem);
+      }
+    }
+
+    .enter {
+      &--column {
+        &__form {
+        }
+        &__how-to {
+          & > * {
+            @include body;
+            max-width: 36ch;
+            @include mx-auto;
+
+            @include md-down {
+              max-width: unset;
+            }
+          }
+        }
+      }
+    }
+  }
+}
