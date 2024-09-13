@@ -76,6 +76,7 @@
       @include body;
       font-size: calc(var(--body-font-size) * 0.875) !important;
       border-radius: 0.5rem !important;
+      border-color: none!important;
 
       @include pad-x(calc(10px + 3px));
       @include pad-y(4px);
